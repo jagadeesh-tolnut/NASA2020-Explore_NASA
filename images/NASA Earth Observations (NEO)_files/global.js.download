@@ -1,0 +1,431 @@
+$(document).ready(function() {
+
+	// hide all of the extra navigation to start
+	resetNav();
+	resetQueue();
+		
+	// featured datasets slider
+	bindFader('.featured-dataset', '.slider-wrap-in div', 5000, 1, true);
+	
+	// bind all dataset related navigation clicks
+	bindNavigation('ocean');
+	bindNavigation('atmosphere');
+	bindNavigation('energy');
+	bindNavigation('land');
+	bindNavigation('life');
+	bindNavigation('planets');
+
+	// bind all queue related navigation clicks    	
+	bindQueue('queue');
+	bindQueue('analyze');
+	
+	// bind the close button for the nav-hover slider
+	$('.nav-close').click(function() {
+		closeNav();
+	});
+	
+	// bind the close button for the analysis slider
+	$('.analyze-close').click(function() {
+		resetQueue();
+	});
+});
+
+function bindNavigation(section) {
+	$('.menu-'+section).click(function() {	
+		resetNav();
+						
+		$('#slider-nav').animate({height: '448px'}, 400);
+		$('li.menu-'+section).addClass('dataset-shown');
+		$('.nav-'+section).show();
+		$('.nav-close').show();
+		$('#navigation .bot').show();
+	});
+}
+
+function closeNav() {
+	// close the navigation window
+	$('#slider-nav').animate({height: '0px'}, 400);
+	resetNav();
+}
+
+function resetNav() {
+	// resets the nav section
+	$('#navigation li').each(function() {
+		$(this).removeClass('dataset-shown');
+	});
+	
+	$('.nav-hover').each(function() {
+		$(this).hide();
+	});
+	
+	$('.nav-close').hide();
+	$('#navigation .bot').hide();
+}
+
+function bindQueue(section) {
+	$('.menu-'+section).click(function() {
+		resetQueue();
+
+		if ($('.menu-'+section).hasClass('data')) {
+				
+			// the following have to have the class data added to them when there is something
+			// in the queue
+			//
+			// menu-queue
+			// menu-analyze
+					
+			// there are images in the queue
+			if (section == 'queue') {
+				// show image queue
+				$('#slider-queue').show();
+				$('#slider-queue').animate({height: '100%'}, 400);
+				$('li.menu-queue').addClass('queue-shown');
+				$('.analyze-close').show();
+				$('.nav-analyze').show();
+			}							
+		} else {
+			// no images in queue - display warning
+			$('#slider-queue').show();
+			$('#slider-queue').animate({height: '137px'}, 200);
+			$('.nav-queue').show();
+			setTimeout(function() {
+				$('#slider-queue').animate({height: '0px'}, 200);
+				closeQueue();
+			}, 2500);
+		}
+	});
+}
+
+function closeQueue() {
+	// close the navigation window
+	$('#slider-queue').animate({height: '0'}, 400);
+	$('li.menu-queue').removeClass('queue-shown');
+	resetQueue();
+}
+
+function resetQueue() {
+	$('.nav-queue').hide();
+	$('.nav-analyze').hide();
+	$('.analyze-close').hide();
+	$('#slider-queue').hide();
+}
+
+function toggleButton(sceneImageId, title) {
+	var iceTray = iceboxJSON.ICETray;
+	sceneArray = new Array();
+	if (iceTray.length > 0) {
+		_hasScenes = true;
+		for (var i = 0; i < iceTray.length; i++) {
+			sceneArray.push(iceTray[i].sceneImageId);
+		}	
+	}
+	
+	sceneImageIdCheck = String(sceneImageId);
+	
+	// if the current scene image is already in the tray, disable the button
+	if ($.inArray(sceneImageIdCheck, sceneArray) > -1) {
+		// disable the button
+		$('#btn-analyze-image').css("opacity", 0.33);
+		$('#btn-analyze-image').removeClass('hover');
+		$('#btn-analyze-image').removeAttr('href');
+		$('#btn-analyze-image').attr('onclick','').unbind('click');	
+	} else {
+		var datasetInfo = $.ajax({
+		type: "POST",
+		url: "/lib/getDate.php",
+		data: "sceneImageId="+sceneImageId,
+		async: false
+		}).responseText;
+	
+		var datasetInfo = jQuery.parseJSON(datasetInfo);		
+		var date = datasetInfo.date;
+			
+		// enable the button
+		$('#btn-analyze-image').css("opacity", 1);
+		$('#btn-analyze-image').addClass('hover');
+		$('#btn-analyze-image').attr('href', 'javascript:;');
+		$('#btn-analyze-image').attr('onclick',"addSceneImage('"+sceneImageId+"','"+title+"', 'https://neo.sci.gsfc.nasa.gov/servlet/');").bind('click');
+	}
+}
+
+function bindFader(faderBox, faderEle, speed, shown, navdots) {
+
+	// init
+	faderMoving = true;
+	totalEle = (($(faderBox + ' ' + faderEle).length) / shown) - 1;
+	curEle = 1;
+	counter = 0;
+	
+	playSlideshow = setInterval('slideSwitch("'+faderBox+'", '+navdots+', '+speed+')', speed);		
+	
+	$('.btn-slideshow').click(function() {
+		if (faderMoving == true) {
+			clearInterval(playSlideshow);
+			$(this).addClass('paused');
+			faderMoving = false;
+		} else {
+			playSlideshow = setInterval('slideSwitch("'+faderBox+'", '+navdots+')', speed);
+			$(this).removeClass('paused');
+			faderMoving = true;
+		}
+	});
+	
+				
+	// nav dots
+	if (navdots) {
+		// add nav dot links
+		for (var i=0; i < (($(faderBox + ' ' + faderEle).length) / shown); i++) {
+			if (i == 0) {
+				$(faderBox + ' .nav-dots').append('<a href="javascript:;" class="nav-dot-0 dot-sel"></a>');
+			} else {
+				$(faderBox + ' .nav-dots').append('<a href="javascript:;" class="nav-dot-' + i + '"></a>');
+			}
+		}
+		// bind nav dot links
+		$(faderBox + ' .nav-dots a').each( 
+			function(index) {
+				$(this).bind({
+					'click': function(e) {
+						e.preventDefault();
+								 
+						var selectedEle = $(this).attr('class');
+						selectedEle = selectedEle.replace('nav-dot-','');
+						selectedEle = selectedEle.replace(' dot-sel','');
+						
+						// loop over the possible elements and set the selected to visible
+						for (var i=0; i < (($(faderBox + ' ' + faderEle).length) / shown); i++) {
+							var faderBlock = faderEle+':eq('+i+')';
+
+							if (i == selectedEle) {
+								resetNavDots(faderBox);
+								$(faderBlock).animate({opacity:1.0});
+								$(faderBlock).addClass('active');
+								$(this).addClass('dot-sel');
+								// set the curEle for the correct navdots when play starts back
+								curEle = i + 1;
+							} else {
+								$(faderBlock).removeClass('active last-active');
+								$(faderBlock).animate({opacity:0.0});
+							}
+						}
+						// pauses the show
+						if (faderMoving == true) {
+							clearInterval(playSlideshow);
+							$('.btn-slideshow').addClass('paused');
+						}
+						faderMoving = false;
+					}
+				})
+			}
+		);
+	}
+}
+
+
+// Generic slider function
+function bindSlider(sliderBox, sliderEle, speed, shown, navdots) {
+	/*
+
+	Relies on a structure that looks like this:
+
+	<slide-l></slide-l>
+		<slider-wrap>
+			<slider-wrap-in>
+				Sliding element goes here ...
+			</slider-wrap-in>
+		</slider-wrap>
+	<slide-r></slide-r>
+
+	"slider-wrap": set to the height & width of the viewing window
+	"slider-wrap-in": set to the height of the viewing window with a width of 10,000 px
+
+	*/
+
+	// init
+	var sliderMoving = false;
+	$(sliderBox + ' .slide-l').addClass('slide-grey');
+	if ($(sliderBox + ' ' + sliderEle).length < (shown + 1)) {
+		// no elements to slide
+		$(sliderBox + ' .slide-r').addClass('slide-grey');
+	}
+
+	// nav dots
+	if (navdots) {
+		// add nav dot links
+		for (var i=0; i < (($(sliderBox + ' ' + sliderEle).length) / shown); i++) {
+			if (i == 0) {
+				$(sliderBox + ' .nav-dots').append('<a href="javascript:;" class="nav-dot-0 dot-sel"></a>');
+			} else {
+				$(sliderBox + ' .nav-dots').append('<a href="javascript:;" class="nav-dot-' + i + '"></a>');
+			}
+		}
+		// bind nav dot links
+		$(sliderBox + ' .nav-dots a').each( 
+			function(index) {
+				$(this).bind({
+					'click': function(e) {
+						e.preventDefault();
+						if ((!$(this).hasClass('dot-sel')) && (!sliderMoving)) {
+							sliderMoving = true;
+							sliderDistance = parseFloat($(sliderBox + ' .slider-wrap').css('width'));
+							sliderTotal = Math.round(($(sliderBox + ' ' + sliderEle).length) / shown);
+							sliderNewPos = 0 - (sliderDistance * index);
+							resetNavDots(sliderBox);
+							$(this).addClass('dot-sel');
+							$(sliderBox + ' .slider-wrap-in').stop(true).animate({'marginLeft': sliderNewPos + 'px'}, speed, function() {
+								$(sliderBox + ' .slide-l').removeClass('slide-grey');
+								$(sliderBox + ' .slide-r').removeClass('slide-grey');
+								if (sliderNewPos == 0) {
+									$(sliderBox + ' .slide-l').addClass('slide-grey');
+								}
+								if (sliderNewPos == (0 - (sliderDistance * (sliderTotal - 1)))) {
+									$(sliderBox + ' .slide-r').addClass('slide-grey');
+								}
+								sliderMoving = false;
+							});
+						}
+					}
+				})
+			}
+		);
+	}
+
+	// right arrow
+	$(sliderBox + ' .slide-r').bind({
+		click: function(e) {
+			e.preventDefault();
+			sliderCurPos = parseFloat($(sliderBox + ' .slider-wrap-in').css('marginLeft'));
+			sliderDistance = parseFloat($(sliderBox + ' .slider-wrap').css('width'));
+			if ((!$(this).hasClass('slide-grey')) && (!sliderMoving)) {
+				sliderMoving = true;
+				sliderTotal = Math.round(($(sliderBox + ' ' + sliderEle).length) / shown);
+				sliderNewPos = sliderCurPos - sliderDistance;
+				if (navdots) {
+					resetNavDots(sliderBox);
+					newDot = 0 - (sliderNewPos / sliderDistance);
+					$(sliderBox + ' .nav-dot-' + newDot).addClass('dot-sel');
+				}
+				$(sliderBox + ' .slider-wrap-in').stop(true).animate({'marginLeft': sliderNewPos + 'px'}, speed, function() {
+					$(sliderBox + ' .slide-l').removeClass('slide-grey');
+					if (sliderNewPos == (0 - (sliderDistance * (sliderTotal - 1)))) {
+						$(sliderBox + ' .slide-r').addClass('slide-grey');
+					}
+					sliderMoving = false;
+				});
+			}
+		}
+	});
+
+	// left arrow
+	$(sliderBox + ' .slide-l').bind({
+		click: function(e) {
+			e.preventDefault();
+			sliderCurPos = parseFloat($(sliderBox + ' .slider-wrap-in').css('marginLeft'));
+			sliderDistance = parseFloat($(sliderBox + ' .slider-wrap').css('width'));
+			if ((!$(this).hasClass('slide-grey')) && (!sliderMoving)) {
+				sliderMoving = true;
+				sliderNewPos = sliderCurPos + sliderDistance;
+				if (sliderNewPos < 1) {
+					if (navdots) {
+						resetNavDots(sliderBox);
+						newDot = 0 - (sliderNewPos / sliderDistance);
+						$(sliderBox + ' .nav-dot-' + newDot).addClass('dot-sel');
+					}
+					$(sliderBox + ' .slider-wrap-in').stop(true).animate({'marginLeft': sliderNewPos + 'px'}, speed, function() {
+						$(sliderBox + ' .slide-r').removeClass('slide-grey');
+						if (sliderNewPos == 0) {
+							$(sliderBox + ' .slide-l').addClass('slide-grey');
+						}
+						sliderMoving = false;
+					});
+				}
+			}
+		}
+	});
+}
+
+
+function slideSwitch(faderBox, navdots, speed) {
+	
+	var $active = $('.active');
+	
+	faderProgress();
+					
+	if ( $active.length == 0 ) $active = $(faderBox+'-data:last');
+
+	var $next =  $active.next().length ? $active.next()
+		: $(faderBox+'-data:first');
+
+	$active.addClass('last-active');
+
+	$active.animate({opacity: 0.0}, 1000);	
+	$next.css({opacity: 0.0})
+		.addClass('active')
+		.animate({opacity: 1.0}, 1000, function() {
+			$active.removeClass('active last-active');
+		});
+	
+	if (navdots) {
+		resetNavDots(faderBox);
+		$(faderBox + ' .nav-dot-' + curEle).addClass('dot-sel');
+	}
+	if (curEle < totalEle) {
+		curEle++;
+	} else {
+		curEle = 0;
+	}
+}
+
+
+function faderProgress() {
+	$('.status-0').css('opacity', 0.0);
+	$('.status-1').css('opacity', 0.0);
+	$('.status-2').css('opacity', 0.0);
+	$('.status-3').css('opacity', 0.0);
+	playAnimation = setInterval('advanceProgress('+counter+')', 75);
+}
+
+
+function advanceProgress() {
+	if (counter < 5) {
+		$('.status-'+counter).animate({opacity: 1.0}, 400);
+		counter = counter + 1;
+	} else {
+		counter = 0;
+		clearInterval(playAnimation);
+	}
+}
+
+
+function resetNavDots(sliderBox) {
+	$(sliderBox + ' .nav-dots a').each( 
+		function() {
+			if ($(this).hasClass('dot-sel')) {
+				$(this).removeClass('dot-sel')
+			}
+		}
+	);
+}
+
+function updateParam(loc, paramName, value) {
+// loop over each parameter, looking for date
+	var query = '';
+	var q = loc[1].split('&');
+	for (var i=0; i<q.length; i++) {
+		// examine the parameter-value pairs
+		var item = q[i].split('='), param = item[0];
+		if (i == 0) {
+			query += '?';
+		} else {
+			query += '&';
+		}
+		query += param +'=';
+		// change the parameter
+		if (param == paramName) {
+			query += value;
+		} else if (item[1]) {
+			query += item[1];
+		}
+	}
+	return query;
+}

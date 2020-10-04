@@ -1,0 +1,2430 @@
+/*
+----------------------------------------------------
+RESET
+----------------------------------------------------
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+:focus {
+    outline: 0;
+}
+
+ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/*
+----------------------------------------------------
+GLOBALS
+----------------------------------------------------
+*/
+
+body {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-site.png') no-repeat center top;
+    background-color: #f5f5f5;
+    font: 12px/15px 'Lucida Grande', Arial, Helvetica, sans-serif;
+    color: #383838;
+}
+
+a {
+    color: #005dbd;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input, select, textarea {
+    font: 11px 'Lucida Grande', Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+
+.lf { float: left; }
+.rf { float: right; }
+.cf {
+    margin: 0;
+    padding: 0;
+    font-size: 1px;
+    line-height: 0px;
+    clear: both;
+}
+
+em, cite, .source, .foreign, .jargon, .ship, .species, .note {
+    font-style: italic;
+}
+
+.link-lrg {
+    font-size: 14px;
+}
+
+sub { 
+	vertical-align: -.25em ; 
+	font-size: 75% ; 
+}
+
+sup { 
+	vertical-align: .5em ; 
+	font-size: 75% ; 
+}
+
+@import url("http://fast.fonts.net/lt/1.css?apiType=css&c=83024da3-0f1c-47c4-8fe6-2f75ac9cb038&fontids=774857");
+@font-face {
+	font-family: "Futura Bold";
+	scr: url('/css/fonts/3b3d00eb-6d89-47ec-83ee-48276a47ad94.eot?#iefix');
+	src: url ("/css/fonts/3b3d00eb-6d89-47ec-83ee-48276a47ad94.eot?#iefix") format("eot"),
+		 url ("/css/fonts/2a65cbfc-5071-4b4d-bfc2-e052bb091ee2.woff") format("woff"),
+		 url ("/css/fonts/812f781d-aa66-47a1-b6a2-7941effc1527.ttf") format("truetype"),
+		 url ("/css/fonts/2a371030-ff67-40ac-8307-082c1fccf151.svg#2a371030-ff67-40ac-8307-082c1fccf151") format("svg");
+}
+
+/*
+----------------------------------------------------
+LAYOUT
+----------------------------------------------------
+*/
+
+#content {
+    width: 980px;
+    margin: 0 auto;
+    padding-bottom: 35px;
+}
+
+.box {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box.gif') repeat-y top left;
+    width: 100%;
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.box .mid {
+    padding: 10px 8px 0 8px;
+}
+
+.box-topshade {
+	background: none;
+}
+
+.box-topshade .mid { 
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-topshade.gif') no-repeat top left;
+}
+
+.box .bot {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-bot.gif') no-repeat top left;
+    width: 100%;
+    height: 13px;
+    overflow: hidden;
+}
+
+.col-double {
+    width: 980px;
+    position: relative;
+}
+
+.col-double .col-l {
+    float: left;
+    width: 737px;
+}
+
+.col-double .col-r {
+    float: left;
+    margin-top: 4px;
+    width: 243px;
+}
+
+.col-l .box {
+	margin-top: 13px;
+	margin-bottom: 26px;
+	padding-top: 1px;
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-l.gif') repeat-y top left;
+}
+
+.col-l .box .mid {
+	margin-top: -10px;
+	padding: 10px 13px 0 8px;
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-l-top.gif') no-repeat top left;
+}
+.col-l .box .bot { 
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-l-bot.gif') no-repeat top left;
+}
+
+.col-r .box { 
+	padding-top: 8px; 
+	margin-bottom: 11px; 
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-r-top.gif') no-repeat top left;
+}
+.col-r .box .mid { 
+	padding: 0; 
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-r.gif') repeat-y top left;
+}
+.col-r .box .bot { 
+	height: 7px; 
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-r-bot.gif') no-repeat top left;
+}
+
+.col-r .box.analyze {
+	width: 253px;
+	margin-left: -8px;
+	margin-top: -8px;
+	color: #ffffff;
+	background: none;
+}
+
+.col-r .box.analyze .side-hd {
+	height: 39px;
+	padding-top: 12px;
+	padding-left: 22px;
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-analyze-btn.gif') no-repeat top left;
+}
+
+.col-r .box.analyze .side-post {
+	height: 360px;
+	padding-left: 22px;
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-analyze.gif') no-repeat top left;
+}
+
+.col-r .box.analyze h3 {
+    font-size: 16px;
+    line-height: 18px;
+    padding-bottom: 4px;
+}
+.col-r .box.analyze p {
+	color: #ffffff;
+	padding-bottom: 6px;
+}
+.col-r .box.analyze .mid {
+	background: none;
+}
+.col-r .box.analyze .btn-analyze-image {
+	float: left;
+	height: 31px;
+	width: 203px;
+	margin-left: 6px;
+	margin-bottom: 20px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-analyze-image.png') no-repeat top left;
+    text-indent: -3000px;
+}
+.col-r .box.analyze a.btn-analyze-image:hover {
+	background-position: 0px 0px;
+}
+.col-r .box.analyze a.btn-analyze-image.hover:hover {
+	background-position: 0px -74px;
+}
+.col-r .box.analyze .details {
+	height: 84px;
+	padding-top: 8px;
+	margin-bottom: 16px;
+}
+.col-r .box.analyze a.permalink {
+	color: #999999;
+}
+.col-r .box.analyze .downloads {
+	height: 180px;
+}
+.col-r .box.analyze .downloads table {
+	width: 100%;
+}
+.col-r .box.analyze .downloads table tr.sscsv {
+	display: none;
+}
+.col-r .box.analyze .downloads table th {
+	height: 20px;
+	text-align: left;
+	font-size: 11px;
+	border-bottom: 1px solid #383838;
+	padding-top: 6px;
+}
+.col-r .box.analyze .downloads table td {
+	text-align: right;
+	font-size: 11px;
+	border-bottom: 1px solid #383838;
+	color: #999999;
+}
+.col-r .box.analyze .downloads select {
+	width: 130px;
+	margin-bottom: 8px;
+}
+.col-r .box.analyze .downloads a {
+	color: #999999;
+}
+.col-r .box.analyze .downloads a.download-link {
+	text-align: left;
+	float: right;
+	height: 8px;
+	width: 10px;
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-download-arrow.png') no-repeat top right;
+	text-indent: -3000px;
+	margin-top: 3px;
+}
+
+.col-r .box.analyze .downloads a.btn-info {
+	display: inline-block;
+    height: 14px;
+    width: 14px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-info-dark.gif') no-repeat top left;
+    text-indent: -3000px;
+    padding-bottom: 8px;
+}
+
+.ie6 .col-r .box .mid,
+.ie7 .col-r .box .mid { zoom: 1; }
+
+.box-notop .mid {
+    padding-top: 0px !important;
+}
+
+.block-col-double {
+	position: reliatve;
+}
+
+.block-col-double .block-col-l,
+.block-col-double .block-col-r {
+	float: left;
+	width: 330px;
+}
+
+.block-col-double .block-col-l {
+	margin-right: 26px;
+}
+
+
+/*
+----------------------------------------------------
+HEADERS
+----------------------------------------------------
+*/
+
+.full-hd,
+.full-hd-image {
+    height: 38px;
+    padding: 4px 18px 8px 16px;
+    margin-left: -7px;
+    margin-bottom: -28px;
+}
+.full-hd {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-h2-global-light.gif') no-repeat bottom left;
+    margin-bottom: 0px;
+}
+
+.box-topshade .full-hd {
+	background: none;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 8px 0 0 0;
+	margin: 0 8px 0 8px;
+}
+
+.full-hd h2,
+.full-hd-image h2 {
+    font: 18px 'Futura Bold', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #504F4F;
+}
+
+.full-hd .select-option {
+	float: right;
+	margin-top: -26px;
+}
+
+.half-hd {
+    padding: 3px 0 8px 0;
+}
+
+.half-hd h2 {
+    font: 18px 'Futura Bold', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+   	text-transform: uppercase;
+   	color: #504f4f;	
+   	border-bottom: 1px solid #e5e5e5;
+}
+
+.full-hd-sub {
+    padding: 13px 18px 16px 18px;
+}
+.full-hd-sub h1 {
+    font-size: 18px;
+}
+
+.full-hd-sub h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #504f4f;
+    line-height: 16px;
+    padding-bottom: 10px ;
+}
+
+
+/*
+----------------------------------------------------
+GLOBAL HEADER
+----------------------------------------------------
+*/
+
+#header {
+	height: 150px;
+	width: 100%;
+}
+
+#header-wlogo {
+	height: 88px;
+	width: 100%;
+}
+
+#header-in {
+    width: 726px;
+    margin: 0 auto;
+    height: 76px;
+    position: relative;
+    padding-left: 254px;
+}
+
+#header-in .logo {
+    position: absolute;
+    z-index: 1;
+    top: 35px;
+    left: 60px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/globals/neo-logo.png') no-repeat top left;
+    width: 218px;
+    height: 43px;
+    text-indent: -3000px;
+}
+
+#header-in .nasa-logo {
+    position: absolute;
+    z-index: 1;
+    top: 35px;
+    left: 0px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/globals/nasa-logo.png') no-repeat top left;
+    width: 49px;
+    height: 42px;
+    text-indent: -3000px;
+}
+
+#navigation {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-nav.png') no-repeat top left;
+	width: 980px;
+	height: 60px;
+	margin: 0 auto ;
+}
+
+#navigation ul {
+	list-style: none;
+}
+
+#navigation li {
+    float: left;
+	height: 60px;
+}
+
+#navigation li a {
+    display: block;
+    line-height: 60px;
+    height: 31px;
+    font: 12px 'Futura Bold', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #504f4f;
+ 	padding-top: 31px;
+    text-align: center;
+}
+
+#navigation li.menu-queue a,
+#navigation li.menu-analyze a {
+	color: #ffffff;
+	opacity: 0.2;
+}
+ 
+#navigation li.dataset a:hover {
+    text-decoration: none;
+}
+
+#navigation li.dataset-shown {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-menu-dataset.gif') no-repeat 0px -1px;
+    color: #005dbd;
+}
+
+#navigation li.general a:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-menu-general.gif') no-repeat 1px -2px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#navigation li.menu-queue a:hover,
+#navigation li.menu-analyze a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#navigation li.menu-queue.data a,
+#navigation li.menu-analyze.data a {
+    opacity: 1.0;
+}
+
+#navigation li.menu-queue.data a:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-menu-queue.png') no-repeat 0px -1px;
+}
+
+#navigation li.queue-shown {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-menu-queue.png') no-repeat 0px -1px;
+}
+
+#navigation li.menu-analyze.data a:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-menu-analyze.gif') no-repeat 0px -1px;
+}
+
+#navigation li.menu-ocean a { width: 115px; }
+#navigation li.menu-atmosphere a { width: 155px; }
+#navigation li.menu-energy a { width: 120px; }
+#navigation li.menu-land a { width: 102px }
+#navigation li.menu-life a { width: 94px; }
+#navigation li.menu-news a { width: 74px; }
+#navigation li.menu-about a { width: 80px; }
+#navigation li.menu-queue a { width: 128px; }
+#navigation li.menu-analyze a { width: 112px; }
+
+#slider-nav {
+	position: absolute;
+	top: 136px;
+	width: 978px;
+	height: 0px;
+}
+
+#navigation .nav-ocean,
+#navigation .nav-atmosphere,
+#navigation .nav-energy,
+#navigation .nav-land,
+#navigation .nav-life,
+#navigation .nav-planets {
+	position: absolute;
+	top: 18px;
+	z-index: 89;
+	background-color: #ffffff;
+}
+
+#navigation .nav-close {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-close.gif') no-repeat 963px 2px;
+	background-color: #ffffff;
+	float: left ;
+	height: 28px;
+	width: 980px;
+	text-indent: -3000px;
+	z-index: 90;
+}
+
+#navigation .nav-content {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-topshade.gif') no-repeat left top;
+	height: 416px;
+	width: 980px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+#navigation .nav-content .nav-dataset {
+    font: 11px/15px 'Lucida Grande', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+	float: left;
+	height: 86px;
+	width: 460px;
+	margin-left: 16px;
+	margin-bottom: 16px;
+   	border-bottom: 1px solid #e5e5e5;
+}
+
+#navigation .nav-content .nav-dataset img {
+	float: left;
+	margin-right: 10px;
+}
+
+#navigation .nav-content .nav-dataset h3 {
+	float: left;
+	width: 300px;
+	margin: -2px 0 0 8px;
+}
+
+#navigation .nav-content .nav-dataset h5 {
+	float: left;
+	width: 300px;
+    color: #504f4f;
+	margin: 2px 0 10px 8px;
+}
+
+#navigation .bot {
+	margin-top: -1px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-box-bot.gif') no-repeat top left;
+    width: 100%;
+    height: 13px;
+    overflow: hidden;
+}
+
+#slider-queue {
+	position: absolute;
+	top: 122px;
+	width: 980px;
+	height: 0px;
+}
+
+#navigation .nav-queue {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-queue-no-data.png') no-repeat top left;
+	position: absolute;
+	left: 655px;
+	width: 330px;
+	height: 137px;
+	padding-top: 30px;
+	z-index: 91;
+}
+
+#navigation .nav-queue p {
+    font: 12px/16px 'Lucida Grande', Arial, Helvetica, sans-serif;
+	color: #ffffff;
+	width: 260px;
+	margin: 6px auto;
+}
+
+#navigation .nav-analyze {
+	position: absolute;
+	left: 586px;
+	width: 394px;
+	padding-top: 14px;
+	z-index: 91;
+}
+
+#navigation .analyze-close {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-close.gif') no-repeat 370px 6px;
+	float: left ;
+	height: 28px;
+	width: 394px;
+	text-indent: -3000px;
+	z-index: 92;
+}
+
+#navigation .nav-analyze-content {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-queue-data.png') no-repeat bottom left;
+	background-color: #021144;
+	color: #ffffff;
+	padding: 20px 20px 0 20px;
+}
+
+#navigation .nav-analyze-bot {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-queue-data-bot.png') no-repeat top left;
+    position: absolute;
+    width: 394px;
+    height: 15px;
+}
+
+#navigation .analyze-dataset {
+	width: 354px;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #1c2d64;
+	clear: both;
+}
+
+#navigation .analyze-dataset p {
+	font-size: 11px;
+	line-height: 13px;
+	color: #ffffff;
+}
+
+#navigation .analyze-dataset a {
+	color: #ffffff;
+}
+
+#navigation .analyze-dataset img {
+	float: left;
+	margin: 2px 20px 0 0;
+}
+
+#navigation .btn-remove {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-remove.png') no-repeat top left;
+    display: block;
+    width: 65;
+    height: 22px;
+    text-indent: -3000px;
+    margin: 7px 0 0 153px;
+}
+
+
+/*
+----------------------------------------------------
+GLOBAL FOOTER
+----------------------------------------------------
+*/
+
+#footer {
+    height: 190px;
+    background: #111111 url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-footer.gif') no-repeat top center;
+    width: 100%;
+}
+
+#footer-in {
+    width: 996px;
+    margin: 0 auto;
+    color: #7f7f7f;
+    font-size: 11px;
+}
+
+#footer-in .footer-btn {
+	position: relative;
+	width: 140px;
+	height: 32px;
+	top: 60px;
+	left: 49px;
+}
+
+#footer-in .footer-btn a {
+	float: right;
+	margin-left: 3px;
+}
+
+#footer-in .footer-sub {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-footer-sub.gif') no-repeat top left;
+    float: left;
+    width: 248px;
+    height: 148px;
+    padding-left: 50px;
+    margin-top: -35px;
+}
+
+#footer-in .footer-sub a {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-foot-subscribe.gif') no-repeat top left;
+    display: block;
+    width: 130px;
+    height: 37px;
+    text-indent: -3000px;
+    margin: 19px 0 0 5px;
+}
+
+#footer-in .footer-sub a:hover {
+    background-position: 0 -42px;
+}
+
+#footer-in .footer-links {
+    float: left;
+    line-height: 18px;
+    padding-top: 24px;
+    margin-left: -36px;
+    margin-top: -36px;
+}
+
+.footer-links ul {
+	width: 730px;
+    list-style: none;
+   	padding-bottom: 30px;
+}
+
+.footer-links ul li {
+    line-height: 15px;
+    height: 24px;
+    float: left;
+    padding-right: 18px;
+}
+
+.footer-links ul#fed-links li {
+	padding-right: 50px;
+}
+
+.footer-links ul li a {
+    font-weight: bold;
+}
+
+.footer-links a {
+    color: #e7e7e7;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.footer-links p {
+	clear: both;
+	width: 720px;
+}
+
+
+/*
+----------------------------------------------------
+SIDEBAR
+----------------------------------------------------
+*/
+
+a.btn-all {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-side-all.gif') no-repeat top left;
+    float: right;
+    width: 56px;
+    height: 22px;
+    text-indent: -3000px;
+}
+a.btn-all:hover {
+    background-position: -56px 0;
+}
+
+a.btn-contact {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-contact.gif') no-repeat top left;
+    float: left;
+    width: 104px;
+    height: 22px;
+    text-indent: -3000px;
+}
+a.btn-contact:hover {
+	background-position: 0 -60px;
+}
+
+a.btn-twitter {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-twitter.gif') no-repeat top left;
+	float: right;
+	width: 60px;
+	height: 20px;
+	text-indent: -3000px;
+}
+a.btn-twitter:hover {
+	background-position: -60px 0;
+}
+
+.side-hd {
+    min-height: 30px;
+    padding: 4px 18px 0 14px;
+}
+
+.side-hd h3,
+.side-hd h3 a {
+    font: 18px 'Futura Bold', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+	color: #504f4f;
+}
+
+.side-hd h3 a:hover {
+	text-decoration: none;
+}
+
+.side-hd h4 {
+	font: 16px 'Lucida Grande', Arial, Helvetica, sans-serif;
+	color: #504f4f;
+}
+
+.side-post {
+	 padding: 0 23px 0 16px;
+}
+
+.side-post h5 {
+    font: 12px 'Lucida Grande', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #999999;
+    padding-bottom: 4px;
+}
+
+.side-post p {
+    font: 11px 'Lucida Grande', Arial, Helvetica, sans-serif;
+	color: #383838;
+	padding-bottom: 14px;
+}
+
+.side-post li {
+	color: #9E9E9E;
+    font-size: 12px;
+    line-height: 15px;
+    list-style: none outside none;
+    padding: 2px 0;
+}
+
+.side-post-divi {
+    background-color: #e5e5e5;
+    clear: both;
+    display: block;
+    height: 1px;
+    margin: 6px 18px 9px 14px;
+    overflow: hidden;
+}
+
+.side-tip {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-side-tip.png') no-repeat top left;
+	height: 216px;
+	width: 243px;
+	text-align: center;
+	color: #ffffff;
+	padding-top: 18px;
+}
+
+.side-tip h2 {
+    font: 18px 'Futura Bold', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+	text-transform: uppercase;
+}
+
+.side-tip p {
+	font-size: 11px;
+	line-height: 18px;
+	margin: 8px 22px 8px 22px;
+}
+
+.side-tip a {
+	color: #95c4e2;
+}
+
+#new-tip {
+	float: right;
+	text-align: right;
+	margin: 0 22px;
+	font-weight: bold;
+}
+
+#new-tip a {
+	color: #ffffff;
+}
+
+.side-post .contact {
+	height: 22px;
+	padding-bottom: 14px;
+}
+
+
+/*
+----------------------------------------------------
+PAGE: HOME
+----------------------------------------------------
+*/
+
+.featured-dataset {
+	height: 410px;
+}
+
+ .featured-dataset .slider-wrap {
+	float: left;
+	width: 946px;
+	height: 380px;
+	overflow: hidden;
+	margin: -6px 0 0 10px;
+	padding-top: 16px;  
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-dataset-attrib.gif') no-repeat top right;
+}
+
+.featured-dataset-data {
+	position: absolute;
+	top: 10;
+	left: 10;
+	z-index: 8;
+	opacity: 0.0;
+	ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+}
+
+.active {
+	z-index: 10;
+	opacity: 1.0;
+	ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+}
+
+.last-active {
+	z-index: 9;
+	opacity: 0.0;
+	ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+}
+
+.featured-dataset .slideshow-controls {
+	float: left;
+	width: 720px;
+	height: 18px;
+	margin: -16px 0 0 0;
+}
+
+.featured-dataset .play-pause {
+	float: left;
+	margin: 3px 0 0 0;
+}
+
+.featured-dataset .play-pause a {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-play-pause.gif') no-repeat top left;
+	float: left;
+	width: 12px;
+	height: 13px;
+	overflow: hidden;
+	text-decoration: none !important;
+}
+
+.featured-dataset .play-pause a.paused {
+	background-position: 0 -27px;
+}
+
+.featured-dataset .play-status {
+	float: right;
+	height: 20px;
+	width: 20px;
+	margin: 0 10px 0 0;
+}
+
+.featured-dataset .play-status .status-0,
+.featured-dataset .play-status .status-1,
+.featured-dataset .play-status .status-2,
+.featured-dataset .play-status .status-3 {
+	position: absolute;
+	height: 20px;
+	width: 20px;
+}
+
+.featured-dataset .status-0 {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-fader-progress-0.gif') no-repeat top left;
+	z-index: 7;
+	opacity: 0.0;
+}
+
+.featured-dataset .status-1 {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-fader-progress-1.gif') no-repeat top left;
+	z-index: 8;
+	opacity: 0.0;
+}
+
+.featured-dataset .status-2 {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-fader-progress-2.gif') no-repeat top left;
+	z-index: 9;
+	opacity: 0.0;
+}
+
+.featured-dataset .status-3 {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-fader-progress-3.gif') no-repeat top left;
+	z-index: 10;
+	opacity: 0.0;
+}
+
+.featured-dataset .nav-dots {
+	float: left;
+	margin: 2px 0 0 10px;
+}
+
+.featured-dataset .nav-dots a {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-nav-dots.gif') no-repeat top left;
+    float: left;
+    width: 12px;
+    height: 13px;
+    overflow: hidden;
+    text-decoration: none !important;
+    margin-right: 8px;
+}
+
+.featured-dataset .nav-dots a:hover {
+    background-position: 0 -13px;
+}
+
+.featured-dataset .nav-dots a.dot-sel {
+    background-position: 0 -26px !important;
+    cursor: default !important;
+}
+
+.dataset-attributes {
+	float: left;
+	width: 216px;
+	height: 350px;
+	margin: 0 0 0 30px;
+}
+
+.dataset-attributes h2 {
+    font: 18px 'Futura Bold', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+	text-transform: uppercase;
+   	color: #504f4f;
+	margin: 0 0 0 8px;
+}
+
+.dataset-attributes h3 {
+    font: 16px 'Lucida Grande', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+	margin: 24px 0 0 8px;
+}
+
+.dataset-attributes h5 {
+    font: 11px/15px 'Lucida Grande', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #504f4f;
+	margin: 2px 0 10px 8px;
+}
+
+.dataset-attributes p {
+    font: 11px/15px 'Lucida Grande', Arial, Helvetica, sans-serif;
+	color: #383838;
+	margin: 0 0 0 8px;
+}
+
+.dataset-desc {
+	float: left;
+	width: 200px;
+}
+
+.home-datasets {
+	width: 683px;
+    margin: 0 10px 27px 10px;
+}
+
+.home-datasets .home-datasets-header {
+	margin: 12px 0 16px 0;
+}
+
+.home-datasets .home-datasets-header h2 {
+    font: 16px 'Lucida Grande', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+	color: #383838;
+}
+
+.home-datasets .home-dataset,
+.home-datasets .home-dataset-first {
+    font: 11px/15px 'Lucida Grande', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+	float: left;
+	height: 160px;
+	width: 215px;
+	padding-left: 19px;
+}
+
+.home-datasets .home-dataset-first {
+	padding-left: 0px;
+}
+
+.home-datasets .home-datasets-divi {
+    background-color: #e5e5e5;
+    clear: both;
+    display: block;
+    height: 1px;
+    margin: 6px 0 9px 14px;
+    overflow: hidden;
+}
+
+/* share button */
+
+#at20mc {margin: 0; padding: 0; font: 11px/18px 'Lucida Sans', 'Lucida Grande', Verdana, sans-serif;}
+#at15s_head {display: none;}
+#at16pf {display: none;}
+#at15s {padding: 0px; border: 1px solid #808080!important;}
+#at_hover .at_item, #at_share .at_item {color: #333333!important;}
+#at_hover .at_item:hover,#at_hover .at_item.athov,#at_share .at_item:hover,#at_share .at_item.athov{text-decoration: none; color:#333333!important; border:1px solid #f0f4f7!important; background: #f0f4f7!important;}
+#at_msg, #at16p label, #at_share .at_item, #at16p, #at15s, #at16p form input, #at16p form textarea {font: 11px/18px 'Lucida Sans', 'Lucida Grande', Verdana, sans-serif!important;}
+#share {float: right; margin: 0 0 -18px 18px; padding: 4px 0 0 0;}
+.image-caption ul.highres {padding: 18px 0 0 0;}
+
+.ie6 #share img {
+    margin-top: 2px;
+}
+
+.ie7 #share img {
+    position: relative;
+    margin-top: -5px;
+}
+
+
+/*
+----------------------------------------------------
+PAGE: GENERIC PAGE LAYOUT
+----------------------------------------------------
+*/
+
+.basic {
+	padding: 18px 9px 0 9px;
+    font: 12px/18px 'Lucida Grande', Arial, Helvetica, sans-serif;
+   	color: #504f4f;
+   	width: 686px;
+}
+
+.basic .anchor-block {
+	clear: both;
+}
+
+.basic .divi {
+    background-color: #e5e5e5;
+    clear: both;
+    display: block;
+    height: 1px;
+    margin: 18px 0 19px 0;
+    overflow: hidden;
+}
+
+.basic .to-top {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-back-to-top.gif') no-repeat top left;
+	float: right;
+	width: 79px;
+	height: 11px;
+	text-indent: -3000px;
+}
+.basic .to-top:hover {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-back-to-top-hover.gif') no-repeat top left;
+}
+
+.basic .backlink {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-backlink.gif') no-repeat 0px 4px;
+    padding-left: 8px;
+}
+
+.basic .toplink {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-toplink.gif') no-repeat 0px 4px;
+    padding-left: 12px;
+}
+
+.basic p {
+    padding-bottom: 18px;
+}
+
+.basic ul {
+	list-style-type: none;
+	font-size: 13px;
+}
+
+.basic table {
+	font-size: 11px;
+	text-align: left;
+}
+
+.basic td:first-of-type {
+	width: 35%;
+}
+
+.basic th,
+.basic td {
+	padding-bottom: 14px;
+}
+
+.basic .thumbnail-image {
+	width: 216px ;
+	height: 216px ;
+	margin: 0px 18px 18px 18px ;
+	float: left ;
+	/* display: inline needed to fix IE6 double-margin bug */
+	display: inline ;
+}
+
+.basic .thumbnail-image img {
+	margin-top: 3px;
+}
+
+.basic .thumbnail-image {	
+	margin: 0px ;
+}
+
+.basic .wide {
+	margin-left: -17px;
+	padding-bottom: 18px;
+}
+
+.full-width {
+	width: 946px;
+}
+
+.basic .post-date {
+	color: #999999;
+	margin-top: -8px;
+	padding-bottom: 12px;
+}
+
+
+/*
+----------------------------------------------------
+PAGE: CONTACT
+----------------------------------------------------
+*/
+
+.fancybox-skin {
+      background-color: #ffffff !important;
+}
+
+#contact-window {
+	display: none;
+}
+
+#contact {
+	width: 460px;
+	height: 700px;
+	overflow: auto;
+}
+
+#contact-message {
+	width: 414px;
+	margin: 0 auto;
+}
+
+#contact-message h3 {
+	height: 36px;
+    font: 18px 'Futura Bold', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+	color: #504f4f;
+	padding-top: 14px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+}
+
+#contact-message p {
+	color: #504f4f;
+	padding-bottom: 12px;
+}
+
+#contact-message input[type="text"],
+#contact-message input[type="email"] {
+	height: 30px;
+	margin-top: 6px;
+	-moz-border-radious: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #fafafa;
+	border: 1px solid #cccccc;
+	border-top: 2px solid #cccccc;
+	border-left: 2px solid #cccccc;
+}
+
+#contact-message textarea {
+	margin-top: 6px;
+	-moz-border-radious: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #fafafa;
+	border: 1px solid #cccccc;
+	border-top: 2px solid #cccccc;
+	border-left: 2px solid #cccccc;
+}
+
+#contact .btn-submit {
+	height: 32px;
+	width: 143px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-submit.png') no-repeat top left;
+    text-indent: -3000px;
+    border: none;
+}
+
+/*
+----------------------------------------------------
+PAGE: NEWS
+----------------------------------------------------
+*/
+
+.news .divi {
+	width: 721px;
+	margin-left: -18px;
+}
+
+.news-nav {
+	width: 721px;
+	height: 48px;
+	margin-left: -16px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-h2-global-light.gif') no-repeat top left;
+    clear: both;
+}
+
+.news-nav .pagination {
+	height: 28px;
+	width: 250px;
+	padding-top: 18px;
+	margin: 0 auto;
+}
+
+.news-nav .pagination-container {
+	text-align: center;
+}
+
+.news-nav .pagination .nav-arrow-left,
+.news-nav .pagination .nav-arrow-right {
+	display: inline-block;
+	height: 14px;
+	width: 8px;
+	margin: 6px 12px 0 8px;
+	text-indent: -3000px;
+}
+.news-nav .pagination .nav-arrow-left {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-pagination-arrow-left-noclick.gif') no-repeat top left;
+}
+.news-nav .pagination .nav-arrow-right {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-pagination-arrow-right-noclick.gif') no-repeat top left;
+}
+.news-nav .pagination .nav-arrow-left.has-data {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-pagination-arrow-left.gif') no-repeat top left;
+}
+.news-nav .pagination .nav-arrow-right.has-data {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-pagination-arrow-right.gif') no-repeat top left;
+}
+.news-nav .pagination .nav-arrow-left:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-pagination-arrow-left-hover.gif') no-repeat top left;
+}
+.news-nav .pagination .nav-arrow-right:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-pagination-arrow-right-hover.gif') no-repeat top left;
+}
+
+.news-nav .pagination .page {
+	display: inline-block;
+	height: 28px;
+	width: 28px;
+	margin-left: -4px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-pagination.gif') no-repeat top left;
+    text-align: center;
+    padding-top: 4px;
+    font-weight: bold;
+    color: #000000;
+}
+.news-nav .pagination .selected {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-pagination-hover.gif') no-repeat top left;
+	color: #ffffff;
+}
+.news-nav .pagination .page:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-pagination-hover.gif') no-repeat top left;
+	color: #ffffff;
+	text-decoration: none;
+}
+.news-nav .pagination .page:nth-of-type(2) {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-pagination-first.gif') no-repeat top left;
+}
+.news-nav .pagination .page:nth-of-type(2):hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-pagination-first-hover.gif') no-repeat top left;
+}
+.news-nav .pagination .page.selected:nth-of-type(2) {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-pagination-first-hover.gif') no-repeat top left;
+    color: #ffffff;
+}
+.news-nav .pagination .page:nth-last-of-type(2) {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-pagination-last.gif') no-repeat top right;
+}
+.news-nav .pagination .page:nth-last-of-type(2):hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-pagination-last-hover.gif') no-repeat top right;
+    text-decoration: none;
+}
+.news-nav .pagination .page.selected:nth-last-of-type(2) {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-pagination-last-hover.gif') no-repeat top right;
+}
+.news-nav .pagination .page.leader {
+	width: 45px;
+}
+
+.news-event .news-year {
+	float: left;
+	width: 96px;
+	height: 44px;
+	margin-left: -16px;
+	padding: 14px 0 0 16px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-news-date.gif') no-repeat top left;
+    font: 15px 'Arial', Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.news-event .news-item {
+	float: right;
+	width: 590px;
+}
+
+.news-event .news-item .news-date {
+	color: #999999;
+	padding-bottom: 4px;
+}
+
+
+/*
+----------------------------------------------------
+PAGE: ANALYSIS & CONFIGURATION
+----------------------------------------------------
+*/
+
+.analysis {
+	padding-bottom: 18px;
+}
+
+.analysis .description {
+	float: left;
+	width: 702px;
+	margin-right: 18px;
+}
+
+.analysis .download {
+	float: right;
+	width: 225px;
+}
+
+.analysis .download .btn-download {
+	float: left;
+	width: 201px;
+	height: 27px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-download.gif') no-repeat top left;
+    text-indent: -3000px;
+    padding-bottom: 12px;
+}
+.analysis .download .btn-download:hover {
+	background-position: -201px 0;
+}
+
+.analysis .btn-remove {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-remove.png') no-repeat top left;
+    display: block;
+    width: 65;
+    height: 22px;
+    text-indent: -3000px;
+}
+
+.analysis #remove_all {
+	margin-top: 18px;
+}
+
+.analysis #ice5div {
+	width: 749px;
+	height: 700px;
+	margin: 0 auto;
+	margin-top: 36px;
+	background-color: #cccccc;
+	clear: both;
+}
+
+.analysis .dataset-image {
+	width: 720px;
+	margin-left: -17px;
+}
+
+.analysis #container {
+	width: 720px;
+	height: 360px;
+}
+
+.analysis #container:hover {
+	cursor: crosshair;
+}
+
+.analysis .dataset-area {
+	float: left;
+	width: 220px;
+	margin-top: -5px;
+	padding-top: 23px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-analyze-selectarea.gif') no-repeat top right;
+}
+
+.analysis .selection-box {
+	position: absolute;
+	background: transparent;
+	border: 1px solid yellow;
+}
+
+.analysis .dataset-area #compass {
+	padding-left: 6px;
+}
+
+.analysis .dataset-area input {
+	width: 60px;
+	height: 18px;
+	background-color: #cccccc;
+	-moz-border-radious: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #bcbcbc;
+	text-align: center;
+	color: #000000;
+}
+
+.analysis .dataset-area #north {
+	position: absolute;
+	left: 88px;
+	top: 462px;
+}
+
+.analysis .dataset-area #south {
+	position: absolute;
+	left: 88px;
+	top: 602px;
+}
+
+.analysis .dataset-area #east {
+	position: absolute;
+	left: 144px;
+	top: 532px;
+}
+
+.analysis .dataset-area #west {
+	position: absolute;
+	left: 32px;
+	top: 532px;
+}
+
+.analysis .dataset-area .buttons {
+	width: 238px;
+	margin-left: 52px;
+	padding-top: 8px;
+}
+
+.analysis .dataset-area .buttons a.btn-select {
+	float: left;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-analysis-select.gif') no-repeat top left;
+    height: 22px;
+    width: 50px;
+    text-indent: -3000px;
+}
+
+.analysis .dataset-area .buttons a.btn-clear {
+	float: left;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-analysis-clear.gif') no-repeat top left;
+    height: 22px;
+    width: 47px;
+    text-indent: -3000px;
+}
+
+.analysis .dataset-information {
+	float: left;
+	width: 448px;
+	margin-left: 18px;
+	padding-top: 18px;
+	padding-bottom: 18px;
+    font: 11px/15px 'Lucida Grande', Arial, Helvetica, sans-serif;
+}
+
+.analysis .dataset-information a.btn-info {
+	display: inline-block;
+    height: 14px;
+    width: 14px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-info.gif') no-repeat top left;
+    text-indent: -3000px;
+    padding-bottom: 8px;
+}
+
+.analysis .dataset-information .selection {
+	float: left;
+}
+.analysis .dataset-information .selection:first-of-type {
+	padding-right: 28px;
+}
+
+.analysis .dataset-information .selection select {
+	width: 210px;
+}
+
+.analysis .dataset-information a.btn-launch {
+	float: right;
+	height: 31px;
+	width: 203px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-analysis-launch.gif') no-repeat top left;
+    text-indent: -3000px;
+}
+.analysis .dataset-information a.btn-launch:hover {
+	background-position: 0px -74px;
+}
+
+.analysis .analysis-instructions .download {
+	float: left;
+}
+
+.analysis .analysis-instructions th {
+    font: 16px 'Lucida Grande', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.analysis .analysis-instructions td {
+	width: 201px;
+	padding-right: 28px;
+}
+.analysis .analysis-instructions td:last-of-type {
+	padding-right: 0px;
+}
+
+.analysis .analysis-instructions p {
+	width: 201px;
+}
+
+.analysis .scene-label {
+    font-weight: bold; margin-bottom: 5px;
+}
+.analysis .scene-label1 {
+    color: #FF0000;
+}
+.analysis .scene-label2 {
+    color: #00B200;
+}
+.analysis .scene-label3 {
+    color: #0000FF;
+}
+
+.analysis .select-alert {
+	display: none;
+	float: left;
+	padding-top: 8px;
+	font-weight: bold;
+	color: #FF0000;
+}
+
+
+/*
+----------------------------------------------------
+PAGE: DATASET INDEX
+----------------------------------------------------
+*/
+
+.dataset-index .description {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-dataset-index.png') no-repeat bottom right;
+	height: 160px; 
+	width: 978px;
+	margin-left: -16px;
+}
+
+.dataset-index #desc {
+	float: left;
+	width: 200px;
+	padding-left: 16px;
+    padding-top: 32px;
+}
+
+.dataset-index #desc p {
+	color: #383838;
+	font-size: 11px;
+}
+
+.dataset-index #nav {
+	float: left;
+	width: 756px;
+	height: 160px;
+}
+
+.dataset-index #nav #links {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.dataset-index #nav .link {
+	float: left;
+	width: 120px;
+	height: 120px;
+	text-align: center;
+    font: 12px 'Futura Bold', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+	text-transform: uppercase;
+	line-height: 18px;
+}
+
+.dataset-index .dataset-display:before,
+.dataset-index .dataset-display:after {
+	content: "";
+	display: table;
+}
+.dataset-index .dataset-display:after {
+	clear: both;
+}
+
+.dataset-index .dataset {
+	float: left;
+	width: 315px;
+	height: 88px;
+}
+
+.dataset-index .dataset img {
+	float: left;
+}
+
+.dataset-index .dataset p {
+	float: left;
+	font-size: 11px;
+	width: 153px;
+	padding-left: 14px;
+}
+
+.dataset-index .dataset-bot {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-dataset-index-bot.png') no-repeat top right;
+	width: 978px;
+	height: 19px;
+	margin-left: -16px;
+}
+
+
+/*
+----------------------------------------------------
+PAGE: SUBSCRIBE
+----------------------------------------------------
+*/
+
+.subscribe {
+	padding: 18px 9px 0;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.subscribe p {
+    padding-bottom: 18px;
+}
+
+.subscribe input, .subscribe textarea, .contact select {
+	color: #000000;
+}
+
+.subscribe .submit {
+	width: 317px; 
+	margin: 20px 0px 30px 0px;
+}
+
+
+/*
+----------------------------------------------------
+PAGE: VIEW
+----------------------------------------------------
+*/
+
+.view .wide {
+	padding-bottom: 0px;
+}
+
+.view .dataset-info {
+	margin-top: -5px;
+}
+
+.view #view-by {
+	float: left;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-fade-r.gif') no-repeat top right;
+	width: 415px;
+	height: 72px;
+	padding-top: 18px;
+	color: #504f4f;
+	font-size: 11px;
+}
+
+.view #view-by #view-by-date,
+.view #view-by #view-by-satellite {
+	float: left;
+	width: 186px;
+	padding-right: 18px;
+}
+
+.view #view-by #view-by-date .date-container {
+	width: 186px;
+	height: 22px;
+	margin-top: -12px;
+}
+.view #view-by #view-by-date .date-container .date {
+ 	float: left;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-dataset-toggle.gif') no-repeat top left;
+	height: 22px;
+	width: 48px;
+	text-align: center;
+	text-decoration: none;
+    padding-top: 1px;
+    color: #504f4f;
+    font-weight: bold;
+}
+.view #view-by #view-by-date .date-container .date.selected,
+.view #view-by #view-by-date .date-container .date:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-dataset-toggle-hover.gif') no-repeat top left;
+    color: #ffffff;
+}
+.view #view-by #view-by-date .date-container .date:first-of-type {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-dataset-toggle-first.gif') no-repeat top left;
+    width: 49px;
+}
+.view #view-by #view-by-date .date-container .date.selected:first-of-type,
+.view #view-by #view-by-date .date-container .date:first-of-type:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-dataset-toggle-first-hover.gif') no-repeat top left;
+}
+.view #view-by #view-by-date .date-container .date:last-of-type {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-dataset-toggle-last.gif') no-repeat top left;
+    width: 41px;
+}
+.view #view-by #view-by-date .date-container .date.selected:last-of-type,
+.view #view-by #view-by-date .date-container .date:last-of-type:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-dataset-toggle-last-hover.gif') no-repeat top left;
+}
+
+.view #view-by #view-by-satellite .satellite-container {
+	width: 194px;
+	height: 22px;
+	margin-top: -12px;
+}
+.view #view-by #view-by-satellite .satellite-container .satellite {
+ 	float: left;
+	height: 22px;
+	width: 97px;
+	text-align: center;
+	text-decoration: none;
+    padding-top: 1px;
+    color: #504f4f;
+    font-weight: bold;
+}
+.view #view-by #view-by-satellite .satellite-container .satellite:first-of-type {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-satellite-toggle-first.gif') no-repeat top left;
+}
+.view #view-by #view-by-satellite .satellite-container .satellite.selected:first-of-type,
+.view #view-by #view-by-satellite .satellite-container .satellite:first-of-type:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-satellite-toggle-first-hover.gif') no-repeat top left;
+    color: #ffffff;
+}
+.view #view-by #view-by-satellite .satellite-container .satellite:last-of-type {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-satellite-toggle-last.gif') no-repeat top left;
+}
+.view #view-by #view-by-satellite .satellite-container .satellite.selected:last-of-type,
+.view #view-by #view-by-satellite .satellite-container .satellite:last-of-type:hover {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-satellite-toggle-last-hover.gif') no-repeat top left;
+    color: #ffffff;
+}
+
+.view #colorbar {
+	float: right;
+	width: 242px;
+	height: 92px;
+	padding-top: 22px;
+	text-align: center;
+}
+
+.view #colorbar p {
+	font-size: 11px;
+	float: right;
+	padding-right: 20px;
+}
+
+.view a.btn-info {
+	display: inline-block;
+    height: 14px;
+    width: 14px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-info.gif') no-repeat top left;
+    text-indent: -3000px;
+    padding-bottom: 8px;
+}
+
+.view .dataset-timeline {
+	overflow: hidden;
+	width: 682px;
+}
+
+.view .dataset-timeline #timeline-head {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-details-head.png') no-repeat top left;
+	height: 41px;
+	width: 682px;
+}
+.view .dataset-timeline #timeline-head p {
+	color: #504f4f;
+	padding-top: 12px;
+	padding-left: 12px;
+}
+
+.view .dataset-timeline #timeline-head .year-select {
+	float: right;
+	width: 160px;
+	margin-top: -47px;
+}
+
+.view .dataset-timeline #timeline {
+	position: absolute;
+    height: 78px;
+	display: inline-block;
+}
+
+.view .dataset-timeline #timeline.day {
+	height: 200px;
+}
+
+.view .dataset-timeline .year {
+	float: left;
+	width: 46px;
+	height: 80px;
+	padding-top: 26px;
+	margin-left: 18px;
+	text-align: center;
+	font-weight: bold;
+	color: #005DBD;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-details-year-active.png') no-repeat top left;
+}
+.view .dataset-timeline .year.selected {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-details-year-selected.png') no-repeat top left;
+}
+.view .dataset-timeline .year.selected a {
+    color: #ffffff;
+}
+.view .dataset-timeline .year.inactive {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-details-year-inactive.png') no-repeat top left;
+}
+.view .dataset-timeline .year.inactive a {
+	color: #cccccc;
+	text-decoration: none;
+}
+
+.view .dataset-timeline .month {
+	float: left;
+	width: 106px;
+	height: 80px;
+	padding-top: 26px;
+	margin-left: 18px;
+	text-align: center;
+	font-weight: bold;
+	color: #005DBD;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-details-month-active.png') no-repeat top left;
+}
+.view .dataset-timeline .month.selected {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-details-month-selected.png') no-repeat top left;
+}
+.view .dataset-timeline .month.selected a {
+    color: #ffffff;
+}
+.view .dataset-timeline .month.inactive {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-details-month-inactive.png') no-repeat top left;
+}
+.view .dataset-timeline .month.inactive a {
+	color: #cccccc;
+	text-decoration: none;
+}
+
+.view .dataset-timeline .day {
+	float: left;
+	height: 202px;
+	width: 229px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-calendar.png') no-repeat top left;
+}
+
+.view .dataset-timeline #timeline-slider {
+	padding-top: 12px;
+}
+
+.view .dataset-timeline #timeline-foot {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-details-foot.png') no-repeat top left;
+	height: 77px;
+	width: 682px;
+}
+
+.view .dataset-detail {
+	float: right;
+	height: 22px;
+	width: 223px;
+	margin-top: -22px;
+}
+
+.view #view-basic {
+	float: left;
+	width: 48px;
+	height: 22px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-view-basic.png') no-repeat bottom left;
+    text-indent: -3000px;
+}
+.view #view-intermediate {
+	float: left;
+	width: 95px;
+	height: 22px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-view-intermediate.png') no-repeat bottom left;
+    text-indent: -3000px;
+}
+.view #view-advanced {
+	float: left;
+	width: 80px;
+	height: 22px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-view-advanced.png') no-repeat bottom left;
+    text-indent: -3000px;
+}
+.view #view-basic:hover,
+.view #view-intermediate:hover,
+.view #view-advanced:hover {
+	background-position: 0 0;
+}
+
+.view #view-basic.selected,
+.view #view-intermediate.selected,
+.view #view-advanced.selected {
+	background-position: 0 0;
+}
+
+.view #view-basic.inactive,
+.view #view-intermediate.inactive,
+.view #view-advanced.inactive {
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.5;
+}
+
+#scrollbar1 { 
+	width: 682px; 
+	margin: 0 auto; 
+}
+#scrollbar1 .viewport {
+	height: 78px; 
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-details.png') repeat-y top left;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+#scrollbar1 .viewport-day {
+	height: 204px;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+}
+#scrollbar1 .thumb .end,
+#scrollbar1 .thumb { 
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-timeline-slider.png') no-repeat top left;
+    height: 23px;
+    margin-top: -1px;
+}
+#scrollbar1 .scrollbar { 
+	position: relative; 
+	width: 15px;
+	margin: 0 auto;
+}
+#scrollbar1 .track { 
+	height: 20px; 
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-timeline-slider.png') no-repeat top left;
+}
+#scrollbar1 .thumb { 
+	height: 20px; 
+	width: 13px; 
+	cursor: pointer; 
+	overflow: hidden; 
+	position: absolute; 
+	top: 0; 
+}
+#scrollbar1 .disable { 
+	display: none;
+}
+
+.ui-datepicker,
+.ui-datepicker table,
+.ui-datepicker tr,
+.ui-datepicker td,
+.ui-datepicker th {
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-spacing: 0;
+}
+
+.ui-datepicker table {
+	width: 200px;
+	margin-left: 12px;
+}
+
+.ui-datepicker th {
+	height: 20px;
+	width: 25px;
+	color: #666666;
+	text-align: center;
+}
+
+.ui-datepicker td {
+	font-weight: bold;
+	height: 21px;
+	width: 25px !important;
+	text-align: center;
+	overflow: hidden;
+	text-align: center;
+	padding-top: 3px;
+}
+
+.ui-datepicker {
+    display: none;
+    width: 229px;
+    cursor: default;
+    font-size: 12px;
+}
+
+.ui-datepicker-header {
+    position: relative;
+}
+ 
+.ui-datepicker-title { 
+	text-align: center;
+	padding-top: 8px;
+	padding-bottom: 6px;
+}
+ 
+.ui-datepicker-month {
+    position: relative;
+    font-weight: bold;
+}
+ 
+.ui-datepicker-year {
+	font-weight: bold;
+}
+
+.ui-datepicker-prev,
+.ui-datepicker-next {
+    display: none;
+}
+
+.ui-datepicker-current-day {
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-calendar-selected.png') no-repeat 2px 0px;
+}
+
+.ui-datepicker-current-day a {
+	color: #ffffff;
+}
+
+.ui-state-disabled {
+	color: #afafaf;
+}
+
+#scrollbar1 .viewport-days {
+	height: 187px;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+}
+
+.view .dataset-timeline .days {
+	float: left;
+	height: 187px;
+	width: 170px;
+    background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-days.png') no-repeat top left;
+}
+
+.view .dataset-timeline .days .ui-datepicker-title {
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+.view .dataset-timeline #timeline.days .date-range {
+	height: 25px;
+	font-weight: bold;
+	width: 130px;
+	margin: 0 auto;
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-days-range-active.png') no-repeat top left;
+}
+.view .dataset-timeline #timeline.days .date-range:last-of-type {
+	height: 26px;
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-days-range-active-last.png') no-repeat top left;
+}
+
+.view .dataset-timeline #timeline.days .date-range.inactive {
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-days-range-inactive.png') no-repeat top left;
+}
+.view .dataset-timeline #timeline.days .date-range.inactive:last-of-type {
+	height: 26px;
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-days-range-inactive-last.png') no-repeat top left;
+}
+.view .dataset-timeline #timeline.days .date-range.inactive a {
+	color: #9a9a9a;
+}
+
+.view .dataset-timeline #timeline.days .date-range.selected {
+	width: 150px;
+	background: transparent url('https://neo.sci.gsfc.nasa.gov/images/backgrounds/bg-view-days-range-selected.png') no-repeat top left;
+}
+.view .dataset-timeline #timeline.days .date-range.selected a {
+	color: #ffffff;
+}
+
+.view .dataset-timeline #timeline.days .date-range .date-left {
+	float: left;
+	padding-left: 8px;
+	padding-top: 4px;
+}
+
+.view .dataset-timeline #timeline.days .date-range .date-right {
+	float: right;
+	padding-right: 8px;
+	padding-top: 4px;
+}
+
+.view .dataset-timeline #timeline.days .date-range.selected .date-left {
+	padding-left: 18px;
+}
+.view .dataset-timeline #timeline.days .date-range.selected .date-right {
+	padding-right: 18px;
+}
+
+
+/************** Skin 1 *********************/
+.dd {
+	/*display:inline-block !important;*/
+	text-align:left;
+	background-color:#fff;
+	font-size:12px;
+	position:relative;
+}
+.dd .ddTitle {
+	border:1px solid #dadada;
+	-moz-border-radious: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	text-indent:0;
+	cursor:default;
+	overflow:hidden;
+	height: 52px;
+	width: 236px;
+}
+.dd .ddTitle span.arrow {
+	background:url('https://neo.sci.gsfc.nasa.gov/images/buttons/btn-dd_arrow.gif') no-repeat 0 0;
+	float:right; 
+	display:inline-block;
+	width:25px; 
+	height:52px; 
+	cursor:pointer; 
+}
+
+.dd .ddTitle span.ddTitleText {
+	text-indent:1px; 
+	overflow:hidden; 
+	line-height:16px;
+}
+.dd .ddTitle span.ddTitleText img{
+	text-align:left; 
+	padding: 8px 2px 0 4px;
+}
+.dd .ddTitle img.selected {
+	padding:0 3px 0 0;
+	vertical-align:top;
+}
+.dd .ddChild {
+	position:absolute;
+	border:1px solid #c3c3c3;
+	border-top:none;
+	display:none;
+	margin:0;
+	width: 212px !important;
+	overflow:auto;
+	overflow-x:hidden !important;
+	background-color:#ffffff;
+}
+.dd .ddChild .opta a, .dd .ddChild .opta a:visited {
+	padding-left:10px;
+}
+.dd .ddChild a {
+	display:block;
+	padding: 12px 0 12px 3px;
+	text-decoration:none;
+	color:#000;
+	overflow:hidden;
+	white-space:nowrap;
+	cursor:pointer;
+	border: 1px solid #ffffff;
+}
+.dd .ddChild a:hover {
+	border: 1px solid #005DBD;
+}
+.dd .ddChild a img {
+	border:0;
+	padding:0 2px 0 0;
+	vertical-align:middle;
+}
+.dd .ddChild a.selected {
+	border:1px solid #005DBD;
+	
+}
+.hidden {display:none;}
+
+.dd .borderTop{border-top:1px solid #c3c3c3 !important;}
+.dd .noBorderTop{border-top:none 0  !important}
+
+/************** Skin 2 *********************/
+.dd2 {
+	/*display:inline-block !important;*/
+	text-align:left;
+	background-color:#fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	position:relative;
+}
+.dd2 .ddTitle {
+	background:transparent url('https://neo.sci.gsfc.nasa.gov/images/msDropDown.gif') no-repeat;
+	padding:0 3px;
+	text-indent:0;
+	cursor:default;
+	overflow:hidden;
+	height:36px;
+}
+.dd2 .ddTitle span.arrow {
+	background:transparent url('https://neo.sci.gsfc.nasa.gov/images/icon-arrow.gif') no-repeat 0 0; float:right; display:inline-block;width:27px; height:27px; cursor:pointer; top:5px; position:relative; right:2px;
+}
+
+.dd2 .ddTitle span.ddTitleText {text-indent:1px; overflow:hidden; line-height:33px; font-family:Georgia, "Times New Roman", Times, serif; font-size:16px; font-weight:bold; color:#fff;}
+.dd2 .ddTitle span.ddTitleText img{text-align:left; padding:0 2px 0 0;}
+.dd2 .ddTitle img.selected {
+	padding:0 2px 0 0;
+	vertical-align:top;
+}
+.dd2 .ddChild {
+	position:absolute;
+	border:1px solid #c3c3c3;
+	border-top:none;
+	display:none;
+	margin:0;
+	width:auto;
+	overflow:auto;
+	overflow-x:hidden !important;
+	background-color:#ffffff;
+	font-size:14px;
+}
+.dd2 .ddChild .opta a, .dd2 .ddChild .opta a:visited {padding-left:10px}
+.dd2 .ddChild a {
+	display:block;
+	padding:3px 0 3px 3px;
+	text-decoration:none;
+	color:#000;
+	overflow:hidden;
+	white-space:nowrap;
+	cursor:pointer;
+}
+.dd2 .ddChild a:hover {
+	background-color:#66CCFF;
+}
+.dd2 .ddChild a img {
+	border:0;
+	padding:0 2px 0 0;
+	vertical-align:middle;
+}
+.dd2 .ddChild a.selected {
+	background-color:#66CCFF;	
+}
+
+.dd2 .borderTop{border-top:1px solid #c3c3c3  !important;}
+.dd2 .noBorderTop{border-top:none 0  !important}
+
+/************* use sprite *****************/
+.dd .ddChild a.sprite, .dd .ddChild a.sprite:visited {
+	background-repeat:no-repeat;
+	padding-left:24px;
+}
+
+.dd .ddChild a.calendar, .dd .ddChild a.calendar:visited {
+	background-position:0 -404px;
+}
+.dd .ddChild a.shoppingcart, .dd .ddChild a.shoppingcart:visited {
+	background-position:0 -330px;
+}
+.dd .ddChild a.cd, .dd .ddChild a.cd:visited {
+	background-position:0 -439px;
+}
+.dd .ddChild a.email, .dd .ddChild a.email:visited {
+	background-position:0 -256px;
+}
+.dd .ddChild a.faq, .dd .ddChild a.faq:visited {
+	background-position:0 -183px;
+}
+.dd .ddChild a.games,
+.dd .ddChild a.games:visited {
+	background-position:0 -365px;
+}
+.dd .ddChild a.music, .dd .ddChild a.music:visited {
+	background-position:0 -146px;
+}
+.dd .ddChild a.phone, .dd .ddChild a.phone:visited {
+	background-position:0 -109px;
+}
+.dd .ddChild a.graph, .dd .ddChild a.graph:visited {
+	background-position:0 -73px;
+}
+.dd .ddChild a.secured, .dd .ddChild a.secured:visited {
+	background-position:0 -37px;
+}
+.dd .ddChild a.video, .dd .ddChild a.video:visited {
+	background-position:0 0;
+}
+/*******************************/

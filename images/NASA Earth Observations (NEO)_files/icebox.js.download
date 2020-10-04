@@ -1,0 +1,259 @@
+/*  IceBox javascript file
+ *  Created by Paul Przyborski
+ *
+ *  IceBox is used to store and compare images from the NEO website
+ *  This version of the file is for the 2012 NEO redesign and is based on
+ *  the previous version of the site (original by Kevin Ward)
+ *
+/*--------------------------------------------------------------------------*/
+
+// icebox contains items
+var _hasScenes = false;
+
+// scoping issues require the setters and getters (for now)
+var iceboxJSON;
+function setIceboxJSON(_json) {
+	iceboxJSON = _json;
+	return iceboxJSON;
+}
+function getIceboxJSON() {
+	return iceboxJSON;
+}
+
+
+/*
+	AJAX methods for retrieving and manipulating contents of ICEBox
+*/
+function listIcebox(showImage, renderPath) {
+
+	var iceTray = iceboxJSON.ICETray;
+	var newHTML = "";
+	    
+	if (iceTray.length > 0) {
+		_hasScenes = true;
+		for (var i = 0; i < iceTray.length; i++) {
+				
+			var datasetInfo = $.ajax({
+			type: "POST",
+			url: "/lib/getDate.php",
+			data: "sceneImageId="+iceTray[i].sceneImageId,
+			async: false
+			}).responseText;
+			
+			var datasetInfo = jQuery.parseJSON(datasetInfo);		
+			var displayDate = datasetInfo.display_date;
+			var title = iceTray[i].name;
+			title = title.replace(datasetInfo.display_date, '');
+			
+			newHTML += '<div class="analyze-dataset" id="dropdown_'+iceTray[i].sceneImageId+'">\n';
+			newHTML += '	<img src="'+renderPath+'RenderData?si='+iceTray[i].sceneImageId+'&cs=rgb&widthFit=132&heightFit=66&format=PNG" width="132" height="66" alt="'+title+'">\n';
+			newHTML += '	<p><strong>'+title+'</strong></p>\n';
+			newHTML += '	<p>'+displayDate+'</p>\n';
+			newHTML += '	<a class="btn-remove" href="javascript:;" onclick="removeSceneImage('+iceTray[i].sceneImageId+');">remove</a>\n';
+			newHTML += '</div>\n';
+			
+			// retrive the initial si (for UI purposes)
+			var url = $("#preview-image").attr("src");
+			var si_check = /[?&]si=([^&]+)/i;
+			var match = si_check.exec(url);
+			if (match != null) {
+				si = match[1];
+			} else {
+				si = "";
+			}
+			
+			// check to see if the page we are currently viewing is already in the queue
+			// disable the button if it is
+			if (iceTray[i].sceneImageId == si) {
+				toggleButton(si);
+			}
+		}
+		
+		if (i < 3) {
+			while (i < 3) {
+				newHTML += '<div class="analyze-dataset" id="dropdown_'+i+'" style="display:none;">\n';
+				newHTML += '</div>\n';	
+				i++;		
+			}
+		}
+		
+		newHTML += '<p><strong>*Add up to three datasets</strong></p>\n';		
+	} else {
+		_hasScenes = false;
+		$('.menu-queue').removeClass('data');
+        $('.menu-analyze').removeClass('data');
+	}
+    $('#icebox').html(newHTML);
+}
+
+var listIceboxCallback = function(o) {
+	if(o.responseText !== undefined) {
+		setIceboxJSON( eval( '(' + o.responseText + ')' ) );
+		loadPage();
+	}
+};
+
+// Callback for displaying error message as a result of AJAX request.
+// This is not where messages from the app side are displayed.
+var listIceboxError = function(o) {
+	if(o.responseText !== undefined){
+		//div.innerHTML = "There was an error in retrieving the analysis list: " + o.statusText;
+		console.log('error');
+	}
+};
+
+var iceboxCallback = {
+	success:listIceboxCallback,
+	failure:listIceboxError
+};
+
+/*
+	Add requested scene to the navigation list and update the display text
+*/
+function addSceneImage(sceneImageId, recordTitle, renderPath) {
+
+	var iceTray = iceboxJSON.ICETray;
+	var recordArray = new Array();
+	recordArray['sceneImageId'] = sceneImageId; 
+	recordArray['recordTitle'] = recordTitle;
+
+	var duplicate = false;
+
+	if (typeof(numImages) == "undefined") {
+		numImages = iceTray.length + 1;
+	} else {
+		numImages = numImages + 1;
+	}
+	
+	if (numImages < 4) {
+			
+		// search to see if the selected scene is already in the queue		
+		jQuery.grep(iceTray, function(obj) {
+			if (obj.sceneImageId === sceneImageId) {
+				duplicate = true;
+			}
+		});
+				
+		if (duplicate == false) {			
+			$.post("/lib/queue.php", { sceneID: sceneImageId, title: recordTitle });
+	
+			if (numImages == 1) {
+				displayText = ' image';
+			} else {
+				displayText = ' images';
+			}
+
+			$('.menu-queue').addClass('data');
+			$('.menu-analyze').addClass('data');
+			$('.nav-analzye').css('display','inline');
+			
+			$('.menu-queue').html('<a href="javascript:;">'+numImages+displayText);
+						
+			newHTML = "";
+			
+			if (numImages == 1) {
+				newHTML += '<div class="analyze-dataset" id="dropdown_'+sceneImageId+'">\n';
+			}
+			
+			var datasetInfo = $.ajax({
+			type: "POST",
+			url: "/lib/getDate.php",
+			data: "sceneImageId="+sceneImageId,
+			async: false
+			}).responseText;
+			
+			var datasetInfo = jQuery.parseJSON(datasetInfo);		
+			var displayDate = datasetInfo.display_date;
+			var title = recordTitle;
+			title = title.replace(datasetInfo.display_date, '');
+
+			newHTML += '	<img src="'+renderPath+'RenderData?si='+sceneImageId+'&cs=rgb&widthFit=132&heightFit=66&format=PNG" width="132" height="66" alt="'+title+'">\n';
+			newHTML += '	<p><strong>'+title+'</strong></p>\n';
+			newHTML += '	<p>'+displayDate+'</p>\n';
+			newHTML += '	<a class="btn-remove" href="javascript:;" onclick="removeSceneImage('+sceneImageId+');">remove</a>\n';
+			
+			if (numImages == 1) {
+				newHTML += '</div>\n';
+				
+				i = 1;
+				while (i < 3) {
+					newHTML += '<div class="analyze-dataset" id="dropdown_'+i+'" style="display:none;">\n';
+					newHTML += '</div>\n';	
+					i++;		
+				}
+				
+				newHTML += '<p><strong>*Add up to three datasets</strong></p>\n';
+				
+				$('#icebox').html(newHTML);
+			} else {
+				$('#dropdown_'+(numImages-1)).html(newHTML);
+				$('#dropdown_'+(numImages-1)).show();
+				$('#dropdown_'+(numImages-1)).attr('id','dropdown_'+sceneImageId);
+			}
+			
+			toggleButton(sceneImageId, recordTitle);
+			
+		} else {
+			alert('This scene is already staged for analysis.');
+		}
+
+	} else {
+		// too many scenes - display alert
+		alert('You are allowed a maximum of three scenes. You must remove one or more before you can add another.');
+	}
+}
+
+
+/* 
+	Remove requested scene from the navigation list and update the display text
+*/
+function removeSceneImage(sceneImageId) {
+	
+	var iceTray = iceboxJSON.ICETray;
+	if (typeof(numImages) == "undefined") {
+		numImages = iceTray.length - 1;
+	} else {
+		numImages = numImages - 1;
+	}
+	
+	if (numImages == 1) {
+		displayText = ' image';
+	} else if (numImages <= 0) {
+		numImages = 0;
+		$('.menu-queue').removeClass('data');
+        $('.menu-analyze').removeClass('data');
+        $('.nav-analyze').css('display','none');
+		displayText = ' images';
+	} else {
+		displayText = ' images';
+	}
+	
+	$('.menu-queue').html('<a href="javascript:;">'+numImages+displayText);	
+	$('#dropdown_'+sceneImageId).hide();
+	$('#dropdown_'+sceneImageId).attr('id','dropdown_'+numImages);
+	$.post("/lib/queue.php", { remove: sceneImageId });
+
+	toggleButton(sceneImageId);
+
+}
+
+/*
+ Set the mode for the ICE configuration
+ */
+function setIceMode(icemode) {
+    $.post("/lib/queue.php", { icemode: icemode });
+}
+
+/*
+ Set the bounding box for the ICE configuration
+ */
+function setBoundingBox(north, south, east, west) {
+    $.post("/lib/queue.php", { north: north, south: south, east: east, west: west });
+}
+
+/*
+ Set the output resolution for the ICE configuration.
+ */
+function setOutputResolution(outputResolution) {
+    $.post("/lib/queue.php", { outputResolution: outputResolution });
+}
